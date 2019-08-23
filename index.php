@@ -12,6 +12,7 @@ function debug($str) {
     echo ('</pre>');
 };
 
+if ($_GET) {
 
 
 class Router {
@@ -21,26 +22,33 @@ class Router {
     public function __construct() {
         $arr = require 'routs.php';        
 
-        foreach ($arr as $key) {
-            $this->add($key);
+        foreach ($arr as $key => $val) {
+            $this->add($key, $val);
         }
         
-        $this->check();
+        $this->run();
     }
 
-    public function add($route) {
+    public function add($route, $param) {
         $route = '#^' . $route . '$#';
-        $this->routes[] = $route;
+        $this->routes[$route] = $param;
     }
 
     public function check() {
         $url = $_GET;
-        foreach ($this->routes as $route) {
+        foreach ($this->routes as $route => $param) {
             if (preg_match ($route, $url['r'])) {
-                echo ('Hello');
-            } else {
-                echo ('404');
+                return true;
             }
+        }
+        return false;        
+    }
+
+    public function run() {
+        if($this->check() == true) {
+            echo ('Маршрут найден');
+        } else {
+            echo ('Чирик');
         }
         
     }
@@ -49,3 +57,6 @@ class Router {
 
 $route = new Router;
 
+} else {
+    echo ('<a href="/?r=tricks/first">First trick</a>');
+}

@@ -1,5 +1,5 @@
 <?php 
 return [
-    'tricks/second',
-    'tricks/first'
+    'tricks/second' => 'Hello this is tricks > seconds',
+    'tricks/first' => 'Hello this is tricks > first'
 ];
