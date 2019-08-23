@@ -13,20 +13,36 @@ function debug($str) {
 };
 
 
+
 class Router {
+
+    protected $routes = [];
+    
     public function __construct() {
-        $url = $_GET;
-        foreach ($url as $key => $value) {
-            $result = explode ('/', $value);
-            $this->check($result);
+        $arr = require 'routs.php';        
+
+        foreach ($arr as $key) {
+            $this->add($key);
         }
+        
+        $this->check();
     }
-    public function check($arr) {
-        if (count($arr) == 1) {
-            echo ('Вы в разделе ' . $arr[0]);
-        } else {
-            echo('Вы в разделе ' . $arr[0] . ' на странице ' . $arr[1]);  
+
+    public function add($route) {
+        $route = '#^' . $route . '$#';
+        $this->routes[] = $route;
+    }
+
+    public function check() {
+        $url = $_GET;
+        foreach ($this->routes as $route) {
+            if (preg_match ($route, $url['r'])) {
+                echo ('Hello');
+            } else {
+                echo ('404');
+            }
         }
+        
     }
     
 }
