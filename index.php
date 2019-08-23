@@ -13,25 +13,23 @@ function debug($str) {
 };
 
 
-$url = $_GET;
-
-
-function check ($arr) {
-    if (count($arr) == 1) {
-        echo ('Вы в разделе ' . $arr[0]);
-    } else {
-        echo('Вы в разделе ' . $arr[0] . ' на странице ' . $arr[1]);  
+class Router {
+    public function __construct() {
+        $url = $_GET;
+        foreach ($url as $key => $value) {
+            $result = explode ('/', $value);
+            $this->check($result);
+        }
     }
-};
+    public function check($arr) {
+        if (count($arr) == 1) {
+            echo ('Вы в разделе ' . $arr[0]);
+        } else {
+            echo('Вы в разделе ' . $arr[0] . ' на странице ' . $arr[1]);  
+        }
+    }
+    
+}
 
-function route ($arr) {    
-    foreach ($arr as $key => $value) {        
-        $result = explode ('/', $value);   
-        check($result);   
-    }    
-};
-
-route($url);
-//debug($result);
-
+$route = new Router;
 
