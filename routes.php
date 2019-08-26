@@ -1,7 +1,13 @@
 <?php 
 return [
     '/' => 'Main page',
-    '/tricks/second' => 'Hello this is tricks > seconds',
-    '/tricks/first' => 'Hello this is tricks > first'
+    '/tricks/second' => [
+        'controller' => 'TricksController',
+        'action' => 'actionSecond'
+    ],
+    '/tricks/first' => [
+        'controller' => 'TricksController',
+        'action' => 'actionFirst'
+    ]
 ];
 

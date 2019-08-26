@@ -27,9 +27,14 @@ class Router
     public function getRoute(string $getParam)
     {
         foreach ($this->routes as $route => $param) {
+            
+            if (preg_match($route, $getParam)) { 
+                require 'controllers/' . $param['controller'] . '.php';
 
-            if (preg_match($route, $getParam)) {
-                return $param;
+                $controller = new $param['controller'];
+                $action = $param['action'];
+                
+                return $controller->$action();
             }
         }
         return false;
