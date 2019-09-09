@@ -1,11 +1,10 @@
-<?php 
+<?php
 return [
-    '/' => 'Main page',
-    '/tricks/second' => [
+    'test/test' => [
         'controller' => 'TricksController',
         'action' => 'actionSecond'
     ],
-    '/tricks/first' => [
+    'test2/test2' => [
         'controller' => 'TricksController',
         'action' => 'actionFirst'
     ]
