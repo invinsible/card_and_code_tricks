@@ -5,6 +5,10 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 require_once 'libs/Router.php';
+require_once 'libs/BaseModel.php';
+require_once 'libs/DB.php';
+require_once 'models/Deck.php';
+
 $routes = require 'routes.php';
 
 // Функция, чтобы быстрее и удобнее смотреть работу
@@ -16,7 +20,6 @@ function debug($str)
 
     die();
 }
-
 
 $route = new Router($routes);
 $route->run($_GET['r'] ?? '/');
