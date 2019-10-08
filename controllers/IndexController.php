@@ -6,16 +6,16 @@ class IndexController
     public function actionIndex()
     {
         // reading
-        $deck = Deck::findOne(1);
+        $deck = Deck::findOne(1);        
         var_dump($deck->name);
 
         // reading multiple
-        $allDecks = Deck::findAll();
-        debug($allDecks);
+        // $allDecks = Deck::findAll();
+        
 
-//        foreach ($allDecks as $oneDeck) {
-//            var_dump($oneDeck->name);
-//        }
+        // foreach ($allDecks as $oneDeck) {
+        //     debug($oneDeck);
+        // }
 
 //        // writing
 //        $deck->description = 'new description';

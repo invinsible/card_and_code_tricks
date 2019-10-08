@@ -61,8 +61,14 @@ class Deck/* extends BaseModel*/
         
         if ($result === false) {
             return null;
-        }
-        
-        return $result;
+        }        
+
+        foreach ($result as $name => $value) {
+            $model = new Deck();
+            $model->{$name} = $value;
+            $arrayDecks[] = $model;
+        }            
+
+        return $arrayDecks;
     }
 }
