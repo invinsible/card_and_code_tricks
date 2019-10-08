@@ -31,6 +31,7 @@ class Deck/* extends BaseModel*/
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $result = $stmt->fetch();
 
+        
         if ($result === false) {
             return null;
         }
@@ -42,5 +43,26 @@ class Deck/* extends BaseModel*/
         }
 
         return $model;
+    }
+
+    /**
+        * Находит все записи в БД
+        * @return array|null
+    */
+    public static function findAll(): ?array
+    {
+        $db = DB::getInstance()->pdo;
+
+        $stmt = $db->prepare('SELECT * FROM decks');
+        $stmt->execute();
+
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll();
+        
+        if ($result === false) {
+            return null;
+        }
+        
+        return $result;
     }
 }
