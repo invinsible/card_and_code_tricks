@@ -10,12 +10,10 @@ class IndexController
         var_dump($deck->name);
 
         // reading multiple
-        // $allDecks = Deck::findAll();
-        
-
-        // foreach ($allDecks as $oneDeck) {
-        //     debug($oneDeck);
-        // }
+        $allDecks = Deck::findAll();
+        foreach ($allDecks as $oneDeck) {
+            var_dump($oneDeck->name);
+        }
 
 //        // writing
 //        $deck->description = 'new description';

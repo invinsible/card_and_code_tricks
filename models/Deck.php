@@ -31,25 +31,23 @@ class Deck/* extends BaseModel*/
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $result = $stmt->fetch();
 
-        
+
         if ($result === false) {
             return null;
         }
 
 
         $model = new Deck();
-        foreach ($result as $name => $value) {
-            $model->{$name} = $value;
-        }
+        $model->populateModel($result);
 
         return $model;
     }
 
     /**
-        * Находит все записи в БД
-        * @return array|null
-    */
-    public static function findAll(): ?array
+     * Находит все записи в БД
+     * @return array
+     */
+    public static function findAll(): array
     {
         $db = DB::getInstance()->pdo;
 
@@ -58,17 +56,27 @@ class Deck/* extends BaseModel*/
 
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $result = $stmt->fetchAll();
-        
-        if ($result === false) {
-            return null;
-        }        
 
-        foreach ($result as $name => $value) {
+        $arrayDecks = [];
+
+        foreach ($result as $row) {
             $model = new Deck();
-            $model->{$name} = $value;
+            $model->populateModel($row);
+
             $arrayDecks[] = $model;
-        }            
+        }
 
         return $arrayDecks;
+    }
+
+    /**
+     * Заполняет экземпляр класса ключ-значением из БД
+     * @param array $arr
+     */
+    protected function populateModel(array $arr)
+    {
+        foreach ($arr as $key => $value) {
+            $this->{$key} = $value;
+        }
     }
 }

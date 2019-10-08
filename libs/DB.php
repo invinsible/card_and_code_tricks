@@ -2,27 +2,22 @@
 
 /**
  * Синглтон подключение к БД.
+ * @method static DB getInstance()
  */
 class DB
 {
+    use SingletonTrait;
+
     /**
      * @var PDO
      */
     public $pdo;
 
-    private static $instance;
-
-    /**
-     * DB constructor.
-     */
-    private function __construct()
-    {
-        $dsn = 'mysql:dbname=cct_db;host=127.0.0.1';
-        $user = 'root';
-        $password = '';
+    protected function init() {
+        $myConfig = Config::getInstance();
 
         try {
-            $db = new PDO($dsn, $user, $password);
+            $db = new PDO($myConfig->dsn, $myConfig->db_user, $myConfig->db_password);
         } catch (PDOException $e) {
             die('Подключение не удалось: ' . $e->getMessage());
         }
@@ -30,25 +25,4 @@ class DB
         $this->pdo = $db;
     }
 
-    private function __clone()
-    {
-    }
-
-    private function __wakeup()
-    {
-    }
-
-    /**
-     * @return DB
-     */
-    public static function getInstance()
-    {
-        if (self::$instance === null) {
-            $instance = new DB();
-
-            self::$instance = $instance;
-        }
-
-        return self::$instance;
-    }
 }

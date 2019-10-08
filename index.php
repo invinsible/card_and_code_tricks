@@ -4,12 +4,15 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+require_once 'libs/SingletonTrait.php';
 require_once 'libs/Router.php';
 require_once 'libs/BaseModel.php';
 require_once 'libs/DB.php';
 require_once 'models/Deck.php';
+require_once 'libs/Config.php';
 
-$routes = require 'routes.php';
+$myConfig = Config::getInstance();
+$myConfig->load(require 'config.php');
 
 // Функция, чтобы быстрее и удобнее смотреть работу
 function debug($str)
@@ -21,5 +24,5 @@ function debug($str)
     die();
 }
 
-$route = new Router($routes);
+$route = new Router($myConfig->routes);
 $route->run($_GET['r'] ?? '/');
