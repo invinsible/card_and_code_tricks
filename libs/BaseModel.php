@@ -6,6 +6,12 @@
 abstract class BaseModel
 {
     /**
+     * Массив, хранящий динамические свойства модели.
+     * @var array
+     */
+    protected $attributes = [];
+
+    /**
      * Метод возвращает название таблицы
      * @return string
      */
@@ -40,7 +46,6 @@ abstract class BaseModel
         $model->populateModel($result);
 
         return $model;
-
     }
 
     /**
@@ -69,6 +74,64 @@ abstract class BaseModel
         }
 
         return $arrayModels;
+    }
+
+    /**
+     * Создаёт или обновляет запись в БД.
+     * @return bool
+     */
+    public function save(): bool
+    {
+        $tableName = static::tableName();
+
+        $db = DB::getInstance()->pdo;
+
+        $columns = array_keys($this->attributes);
+        $values = array_values($this->attributes);
+
+        $columnsString = '`' . implode('`,`', $columns) . '`';
+        $placeholdersString = implode(',', array_fill(0, count($columns), '?'));
+
+        $query = "INSERT INTO {$tableName} ({$columnsString}) VALUES ({$placeholdersString})";
+        $stmt = $db->prepare($query);
+
+        foreach ($values as $key => $value) {
+            $stmt->bindValue($key + 1, $value);
+        }
+
+        if ($stmt->execute()) {
+            return true;
+        }
+
+        $message = $stmt->errorInfo()[2];
+        die("SQL Error: '{$message}'.");
+    }
+
+    /**
+     * @param string $name
+     * @return mixed
+     */
+    public function __get(string $name)
+    {
+        return $this->attributes[$name];
+    }
+
+    /**
+     * @param string $name
+     * @param $value
+     */
+    public function __set(string $name, $value)
+    {
+        $this->attributes[$name] = $value;
+    }
+
+    /**
+     * @param string $name
+     * @return bool
+     */
+    public function __isset(string $name)
+    {
+        return array_key_exists($name, $this->attributes);
     }
 
     /**

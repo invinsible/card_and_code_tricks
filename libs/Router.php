@@ -94,9 +94,9 @@ class Router
      */
     public function output(string $response)
     {
-        echo '****HEADER****<br>';
+//        echo '****HEADER****<br>';
         echo $response;
-        echo '<br>****FOOTER****';
+//        echo '<br>****FOOTER****';
     }
 
 }
