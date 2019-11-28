@@ -26,7 +26,7 @@ trait SingletonTrait
     public static function getInstance()
     {
         if (static::$instance === null) {
-            $instance = new static;
+            $instance = new static();
 
             static::$instance = $instance;
         }

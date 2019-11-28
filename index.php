@@ -9,6 +9,7 @@ require_once 'libs/Router.php';
 require_once 'libs/BaseModel.php';
 require_once 'libs/DB.php';
 require_once 'models/Deck.php';
+require_once 'models/Requisite.php';
 require_once 'libs/Config.php';
 
 $myConfig = Config::getInstance();
@@ -23,6 +24,7 @@ function debug($str)
 
     die();
 }
+
 
 $route = new Router($myConfig->routes);
 $route->run($_GET['r'] ?? '/');

@@ -29,4 +29,15 @@ class IndexController
 
         return __CLASS__ . '/' . __METHOD__;
     }
+
+    public function actionRequisite()
+    {
+        $requisite = Requisite::findOne(1);
+        if ($requisite === null) {
+            echo 'Значение не найдено в базе';
+            die();
+        }
+
+        return $requisite->name;
+    }
 }
