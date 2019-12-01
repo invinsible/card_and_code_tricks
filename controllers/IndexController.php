@@ -16,17 +16,22 @@ class IndexController
 //        }
 
 //        // writing
-//        $deck->description = 'new description';
-//        $saved = $deck->save(); // true || false
-//        var_dump($saved);
+//        $deck = Deck::findOne(1);
+//        $deck->color = 'new color' . mt_rand();
+//        $deck->description = 'descr' . mt_rand();
+//        $deck->amount = "1"
+//        $saved = $deck->save();
+
+        //delete
+        $deck = Deck::findOne(1);
+        $deck->delete();
 //
         // creating
-        $deck = new Deck();
-        $deck->name = 'new deck ' . mt_rand();
-        $deck->availability = 1;
+//        $deck = new Deck();
+//        $deck->name = 'new deck ' . mt_rand();
+//        $deck->availability = 1;
+//        $created = $deck->save();
 
-        $created = $deck->save();
-        var_dump($created);
 
         return __CLASS__ . '/' . __METHOD__;
     }

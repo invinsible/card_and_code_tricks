@@ -6,6 +6,18 @@
 abstract class BaseModel
 {
     /**
+     * Флаг существования записи в БД
+     * @var
+     */
+    public $isPopulated = false;
+
+    /**
+     * Массив для хранения заполненных аттрибутов модели
+     * @var array
+     */
+    protected $oldAttributes = [];
+
+    /**
      * Массив, хранящий динамические свойства модели.
      * @var array
      */
@@ -82,6 +94,20 @@ abstract class BaseModel
      */
     public function save(): bool
     {
+        if ($this->isPopulated) {
+            return $this->update();
+        } else {
+            return $this->insert();
+        }
+    }
+
+    /**
+     * Создает новую запись
+     * @return bool
+     */
+    protected function insert(): bool
+    {
+
         $tableName = static::tableName();
 
         $db = DB::getInstance()->pdo;
@@ -98,6 +124,65 @@ abstract class BaseModel
         foreach ($values as $key => $value) {
             $stmt->bindValue($key + 1, $value);
         }
+
+        if ($stmt->execute()) {
+            return true;
+        }
+
+        $message = $stmt->errorInfo()[2];
+        die("SQL Error: '{$message}'.");
+    }
+
+    protected function update(): bool
+    {
+        /**
+         * Массивы изменений
+         */
+        $difference = [];
+        $differenceKey = [];
+
+        $tableName = static::tableName();
+
+        $db = DB::getInstance()->pdo;
+
+        foreach ($this->attributes as $key => $value) {
+            if ($this->oldAttributes[$key] !== $value) {
+                $differenceKey[] = $key;
+                $difference[] = $key . '=' . '?';
+            }
+        }
+
+        $columnString = implode(',', $difference);
+        $query = "UPDATE {$tableName} SET {$columnString} WHERE id=?";
+        $stmt = $db->prepare($query);
+
+        foreach ($differenceKey as $key => $value) {
+            $stmt->bindValue($key + 1, $this->attributes[$value]);
+        }
+        $stmt->bindValue(count($differenceKey) + 1, $this->id);
+
+        if ($stmt->execute()) {
+            return true;
+        }
+
+        $message = $stmt->errorInfo()[2];
+        die("SQL Error: '{$message}'.");
+
+
+    }
+
+    /**
+     * Удаление записи
+     * @return bool
+     */
+    public function delete(): bool
+    {
+        $tableName = static::tableName();
+
+        $db = DB::getInstance()->pdo;
+
+        $stmt = $db->prepare("DELETE FROM {$tableName} WHERE id=?");
+        $stmt->bindValue(1, $this->id);
 
         if ($stmt->execute()) {
             return true;
@@ -142,6 +227,9 @@ abstract class BaseModel
     {
         foreach ($arr as $key => $value) {
             $this->{$key} = $value;
+            $this->oldAttributes[$key] = $value;
         }
+
+        $this->isPopulated = true;
     }
 }
