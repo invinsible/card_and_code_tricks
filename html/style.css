@@ -44,6 +44,10 @@ ul {
     border-radius: 4px;
 }
 
+.two-cols {
+    display: flex;
+    
+}
 
 .btn {
     position: relative;
@@ -67,8 +71,29 @@ ul {
     margin: 0 0 25px 0;
 }
 
+.media {
+    min-height: 240px;
+    flex: 2;
+}
+
+.media__frame {
+    width: 100%;
+    min-height: 240px;
+    border: 1px solid #ccc;
+}
+
+.media__img {
+    text-align: right;
+}
+
+.media__img img{
+    max-width: 100%;
+    height: auto;
+}
+
 .specifications {
     margin-bottom: 45px;
+    flex: 1;
 }
 
 .difficult {
@@ -91,6 +116,7 @@ ul {
 
 .video__author,
 .video__link {
+    display: block;
     margin: 0;
     font-size: 14px;
 }
@@ -103,10 +129,10 @@ ul {
 .steps__item {
     position: relative;
     padding: 30px;
-    display: flex;
-    align-items: center;
-    width: 28%;
     margin-right: 7%;
+    flex: 1;
+    display: flex;
+    align-items: center;    
     background-color: #fff;
     border: 1px solid #e5e5e5;
     border-radius: 4px;

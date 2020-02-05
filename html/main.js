@@ -24,8 +24,22 @@ function shuffle(array) {
 
 
 
+$(function(){
 
+  $('.steps__item').click(function(){
+    $(this).find('.steps__hide').addClass('hidden');    
+  });
 
+  $('.video__link').click(function(e){
+    e.preventDefault();
+
+    const path = "https://www.youtube.com/embed/XiaBl_3Paw8";
+
+    $('.media__video').toggleClass('hidden');
+    $('.media__img').toggleClass('hidden');
+    $('.media__frame').attr('src', path);
+  });
+});
 
 
 

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css">    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,17 +21,27 @@
                 <div class="item">
                     <h1 class="item__title">Title</h1>
                     <p class="comment">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores eius corrupti non corporis iusto nulla exercitationem consequatur repellendus rerum excepturi quos facilis quasi quisquam suscipit quia culpa, incidunt autem. Dolore.</p>
-                    
-                    <div class="specifications">
-                        <p class="difficult difficult--light">Difficult: <span>Light</span></p>
-                        <p class="prepare prepare--yes">Prepare: <span></span></p>
-                        <p class="views">Views: 15</p>
-                        <p class="reaction">Reaction: Normal</p>
-                        <div class="video">
-                            <p class="video__author">Alex Alexov</p>
-                            <p class="video__link"><a href="#">link</a></p>
+                    <div class="two-cols">
+                        <div class="specifications">
+                            <p class="difficult difficult--light">Difficult: <span>Light</span></p>
+                            <p class="prepare prepare--yes">Prepare: <span></span></p>
+                            <p class="views">Views: 15</p>
+                            <p class="reaction">Reaction: Normal</p>
+                            <div class="video">
+                                <p class="video__author">Alex Alexov</p>
+                                <a class="video__link" href="">link</a>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media__video hidden">
+                                <iframe class="media__frame" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            <div class="media__img">
+                                <img src="ball.png" alt="">
+                            </div>
                         </div>
                     </div>
+                    
 
                     <ul class="steps">
                         <li class="steps__item"><span class="steps__hide">Show</span>Small descr about step1. Small descr about step1. Small descr all about us lalalal lla.</li>
@@ -42,7 +52,8 @@
             </div>
         </div>
     </div>
-
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="main.js"></script>  
 </body>
 </html>
