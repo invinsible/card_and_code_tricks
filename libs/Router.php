@@ -79,9 +79,9 @@ class Router
      * @param string $actionName
      * @return string
      */
-    public function startController(string $controllerName, string $actionName): string
+    public function startController(string $controllerName, string $actionName): array
     {
-        require_once 'controllers/' . $controllerName . '.php';
+        require_once 'controllers/' . $controllerName . '.php';        
 
         $controller = new $controllerName;
 
@@ -90,13 +90,13 @@ class Router
 
     /**
      * Вывод на экран
-     * @param string $response
+     * @param array $response
      */
-    public function output(string $response)
+    public function output(array $response)
     {
-//        echo '****HEADER****<br>';
-        echo $response;
-//        echo '<br>****FOOTER****';
+        header('Content-Type: application/json');
+        echo json_encode($response);
+
     }
 
 }

@@ -1,0 +1,22 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+}
+
+.create-form {
+    width: 450px;
+
+    fieldset {
+        padding: 1.15rem;
+    }
+
+    &__btn {
+        margin-top: 0.75rem;
+        display: block;
+    }
+}
