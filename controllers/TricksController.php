@@ -11,13 +11,18 @@ class TricksController{
        $trick = new Trick();
        $trick->name = $arr["name"];
        $trick->preparation = (int)$arr["preparation"];
+       $trick->difficult = $arr["difficult"];
        $trick->steps = $arr["steps"];
        $trick->video_link = $arr["video_link"];
        $trick->video_author = $arr["video_author"];
        $trick->views = (int)$arr["views"];
        $trick->comment = $arr["comment"];
-       $created = $trick->save();
 
+       if (!$trick->validate()) {        
+        return ["result" => false];
+       }
+
+       $created = $trick->save();
        return ["result" => true];
     }
 
@@ -38,16 +43,12 @@ class TricksController{
         
     }
 
-    public function actionGetOne()
-    { 
-        $id = (int)$_GET["id"];
-        $trick = Trick::findOne($id);
+    public function actionGetOne()    { 
         
-        if ($trick === null) {
-            return [
-                "result"=>false,
-                "error"=>"No ID in database"
-            ];
+        $trick = $this->find((int)$_GET["id"]);
+
+        if (is_array($trick)) {
+            return $trick;
         }
 
         $data = [
@@ -59,6 +60,35 @@ class TricksController{
         return $data;
         
     }
+
+    public function actionDelete()
+    {                 
+        $trick = $this->find((int)$_GET["id"]);
+
+        if (is_array($trick)) {
+            return $trick;
+        }
+
+        $trick->delete();
+        
+        return ["result" => true];
+    }
+
+
+    private function find(int $id)
+    {
+        $trick = Trick::findOne($id); 
+        if ($trick === null) {
+            return [
+                "result"=>false,
+                "error"=>"No ID in database"
+            ];
+        }
+
+        return $trick;
+    }
+
+    
 
 
 }

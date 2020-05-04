@@ -23,4 +23,13 @@ class Trick extends BaseModel
     {
         return 'tricks';
     }
+
+    public function validate(): bool
+    {
+        if ($this->name === '') {
+            return false;
+        }       
+
+        return true;
+    }
 }

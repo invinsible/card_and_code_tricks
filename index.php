@@ -26,8 +26,14 @@
                     </div>            
                     <div class="create-form__row">
                         <label class="create-form__label" for="preparation">Preparation</label>
-                        <input type="checkbox" name="preparation" id="preparation" autocomplete="off">
-                    </div>                  
+                        <input type="checkbox" name="preparation" id="preparation">
+                    </div>  
+                    <div class="create-form__row">
+                        <p class="create-form__label">Difficult</p>
+                        <label>Light <input type="radio" name="difficult" value="light"></label>
+                        <label>Normal <input type="radio" name="difficult" value="normal"></label>
+                        <label>Hard <input type="radio" name="difficult" value="hard"></label>                        
+                    </div>                
                     <div class="create-form__row">
                         <label class="create-form__label" for="steps">Steps</label>
                         <textarea class="create-form__input" name="steps" rows="4" id="steps"></textarea>
@@ -49,9 +55,14 @@
                     </div>                   
 
 
-                    <button class="create-form__btn" type="submit">Save</button>
+                    <button class="btn create-form__btn" type="submit">Save</button>
                 </fieldset>
             </form>
+        </div>
+
+        <div class="form-wrapper">
+            <button class="showlist" type="button">See all</button>
+            <ul class="list"></ul>
         </div>
     </div>
     
