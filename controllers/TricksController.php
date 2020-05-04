@@ -11,6 +11,11 @@ class TricksController{
        $trick = new Trick();
        $trick->name = $arr["name"];
        $trick->preparation = (int)$arr["preparation"];
+       $trick->steps = $arr["steps"];
+       $trick->video_link = $arr["video_link"];
+       $trick->video_author = $arr["video_author"];
+       $trick->views = (int)$arr["views"];
+       $trick->comment = $arr["comment"];
        $created = $trick->save();
 
        return ["result" => true];

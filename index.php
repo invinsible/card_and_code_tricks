@@ -4,38 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main page</title>
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
-    <h1><?php echo "This is main page"?></h1>
+<body>    
+    <div class="container"> 
+        <div class="form-wrapper">
+            <h1>Create Tricks</h1>
+            <form class="create-form">
+                <fieldset>
+                    <legend>Category</legend>
+                    <select name="category" id="category">
+                        <option value="tricks">Tricks</option>
+                        <option value="decks">Decks</option>
+                    </select>
+                </fieldset>
+                <fieldset>                    
+                    <div class="create-form__row">
+                        <label class="create-form__label" for="name">Name</label> 
+                        <input class="create-form__input" type="text" name="name" id="name" autocomplete="off"> 
+                    </div>            
+                    <div class="create-form__row">
+                        <label class="create-form__label" for="preparation">Preparation</label>
+                        <input type="checkbox" name="preparation" id="preparation" autocomplete="off">
+                    </div>                  
+                    <div class="create-form__row">
+                        <label class="create-form__label" for="steps">Steps</label>
+                        <textarea class="create-form__input" name="steps" rows="4" id="steps"></textarea>
+                    </div> 
+                    <div class="create-form__row">
+                        <label class="create-form__label" for="video_link">Video</label>
+                        <input class="create-form__input" type="text" name="video_link" id="video_link" autocomplete="off">
+                        
+                        <label class="create-form__label" for="video_author">Author video</label>
+                        <input class="create-form__input" type="text" name="video_author" id="video_author" autocomplete="off">
+                    </div>
+                    <div class="create-form__row">
+                        <label class="create-form__label" for="views">Views</label>
+                        <input class="create-form__input" type="number" name="views" id="views" autocomplete="off">
+                    </div>
+                    <div class="create-form__row">
+                        <label class="create-form__label" for="comment">Дополнительно</label>
+                        <textarea class="create-form__input" name="comment" rows="4" id="comment"></textarea>
+                    </div>                   
 
-    <form class="create-form">
-        <fieldset>
-            <legend>Поля для заполнения:</legend>            
-            <label>Название <input class="" type="text" name="name"></label>
-            <p>Подготовка</p>            
-            <label>Да <input class="r2d2" type="checkbox" name="preparation"></label>
-            
-        </fieldset>
-        <fieldset>
-            <legend>Раздел для заполнения</legend>
-            <select name="category" id="category">
-                <option value="tricks">Фокусы</option>
-                <option value="decks">Колоды</option>
-            </select>           
-            <button class="create-form__btn" type="submit">Создать</button>
-        </fieldset>
-        
-    </form>
 
-<br>
+                    <button class="create-form__btn" type="submit">Save</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    
+
+<!-- <br>
     <button class="list" type="button">See all</button>
     <br><br>
     <form class="search">
         <input class="search__input" type="text" placeholder="Type id">
         <button type="submit">Show</button>
-    </form>
+    </form> -->
 
     <script src="./assets/jquery-3.4.1.min.js"></script>
     <script src="./assets/main.js"></script>

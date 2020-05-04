@@ -4,22 +4,163 @@ html {
 }
 
 *,
-*::after,
-*::before {
+*::before,
+*::after {
   -webkit-box-sizing: inherit;
           box-sizing: inherit;
+}
+
+ul[class],
+ol[class] {
+  padding: 0;
+  list-style: none;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+body {
+  min-width: 450px;
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  color: #333333;
+  background-color: #b3e5fc;
+}
+
+.container {
+  padding: 4rem 0.8rem;
+  margin: 0 auto;
+  max-width: 870px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.form-wrapper {
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 10px 25px 0 rgba(41, 52, 73, 0.5);
+          box-shadow: 0 10px 25px 0 rgba(41, 52, 73, 0.5);
+}
+
+.form-wrapper h1 {
+  padding: 2px 0;
+  margin-bottom: 1.5rem;
+  margin-left: -35px;
+  max-width: 330px;
+  background-color: #00b0ff;
+  color: #fff;
+  text-align: center;
 }
 
 .create-form {
   width: 450px;
 }
 
+.create-form__row {
+  margin-bottom: 1rem;
+}
+
+.create-form__row:last-of-type {
+  margin-bottom: 0;
+}
+
+.create-form__label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #4c4c4c;
+}
+
 .create-form fieldset {
-  padding: 1.15rem;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 1.25rem;
+  border: none;
+}
+
+.create-form fieldset:last-of-type {
+  margin-bottom: 0;
+}
+
+.create-form fieldset legend {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #4c4c4c;
+}
+
+.create-form__input {
+  padding: 7px 5px;
+  width: 100%;
+  color: #696969;
+  border: none;
+  outline: none;
+  border: 1px solid #d9d9d9;
 }
 
 .create-form__btn {
-  margin-top: 0.75rem;
+  margin-top: 2.15rem;
   display: block;
+  font-size: 1.2rem;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid transparent;
+  background: none;
+  cursor: pointer;
+}
+
+.create-form__btn:hover {
+  border-color: #ccc;
+}
+
+@media (max-width: 900px) {
+  .create-form {
+    width: 400px;
+  }
+}
+
+@media (max-width: 500px) {
+  .create-form {
+    width: 350px;
+  }
 }
 /*# sourceMappingURL=style.css.map */
